@@ -13,7 +13,7 @@ module.exports.verifyJWT=async(req,res,next)=> {
       }else if(token.length!=0)
       {
         const data =jwt.verify(token,"secretkey");
-        console.log("data:::::::d",data.userData)
+        //console.log("data:::::::d",data.userData)
             if(data.length!=0)
             {
                 next();
