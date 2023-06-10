@@ -15,5 +15,5 @@ router.post('/delete/user/by/id',usercontroller.deleteUserById);
 router.post('/delete/user/permenently',usercontroller.deleteUserPermently);
 router.post('/active/user/by/id',usercontroller.activeUser);
 router.post('/verify/user/otp',usercontroller.otpVerification2);
-
+router.post('/verify/user/otp1',usercontroller.otpVerification);
 module.exports = router;

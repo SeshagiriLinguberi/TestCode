@@ -494,7 +494,7 @@ module.exports.activeUser = async (req,res)=>{
 module.exports.otpVerification = async (req,res)=>{
        // Verify the OTP entered by the user
        function verifyOTP(email, otp, callback) {
-        const query = `SELECT * FROM user_otp_verification WHERE email_id = '${email}' AND otp = '${otp}'`;
+        const query = `SELECT * FROM user_otp_verification WHERE email_id = '${email}' AND otp = '${otp}' AND otp_expires_at > NOW()`;
         conn.query(query, function (error, results) {
           if (error) {
             console.log(error);
@@ -511,7 +511,7 @@ module.exports.otpVerification = async (req,res)=>{
       }
       // Reset the user's password
       function resetPassword(email, otp, newPassword) {
-        console.log("email::",email,"otp",otp,"newPassword",newPassword)
+        //first verify the otp by passing the otp and email to the verifyOTP method
         verifyOTP(email, otp, async function (isValid) {
           if (isValid) {
             console.log('OTP verification successful!');
@@ -545,8 +545,8 @@ module.exports.otpVerification = async (req,res)=>{
       }
       const email =  req.body.email_id;
       const otp = req.body.otp;
-      console.log("otp",otp)
       const newPassword = req.body.new_password;
+      //to verify otp and reset password 
       resetPassword(email, otp,newPassword);
 }
 

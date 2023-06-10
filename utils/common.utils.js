@@ -12,7 +12,6 @@ module.exports.checkUserByUserId = async (userId,flag)=>{
             }
         })
     })
-   
 }
 module.exports.checkInActiveUserByUserId = async (userId)=>{
     return new Promise((resolve,reject)=>{
