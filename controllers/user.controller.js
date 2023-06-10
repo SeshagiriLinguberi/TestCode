@@ -500,7 +500,6 @@ module.exports.otpVerification = async (req,res)=>{
             console.log(error);
             callback(false);
           } else {
-            console.log("result:::",results)
             if (results.length === 1) {
               callback(true);
             } else {    
@@ -564,8 +563,8 @@ module.exports.otpVerification2 = async (req,res)=>{
             })
         }
         else{
-            console.log("data::",data)
             if(data.length!==0){
+                //verify the otp 
             if(data[0].otp===req.body.otp){
                 console.log("otp verification successfull");
                 let newPassword= req.body.new_password;
